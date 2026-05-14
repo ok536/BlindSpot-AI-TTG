@@ -1,0 +1,51 @@
+{
+  "system_config": {
+    "engine_version": "TTG-Alpha-2026",
+    "formula": "Thinking_Capacity = (1 - Blind_Spot) * Convergence"
+  },
+  "input_data": {
+    "session_info": {
+      "id": "LAB_001_MICRO",
+      "user": "sinh_vien_A",
+      "target_object": "Thep_Kiem_Tra_01"
+    },
+    "activity_watch_raw": [
+      {
+        "t": "2026-05-14T10:00:15Z",
+        "d": 45.0,
+        "x": 560,
+        "y": 890,
+        "z": 100
+      }
+    ]
+  },
+  "processing_logic": {
+    "step_1_coverage": {
+      "method": "Grid_Mapping",
+      "total_area_units": 1000,
+      "visited_units": 850,
+      "formula_result": {
+        "blind_spot_index": 0.15,
+        "objective_coverage": 0.85
+      }
+    },
+    "step_2_depth": {
+      "method": "Stability_Analysis",
+      "convergence_threshold": 0.9,
+      "formula_result": {
+        "convergence_score": 0.92
+      }
+    }
+  },
+  "output_metrics": {
+    "summary": {
+      "objective_coverage": 0.85,
+      "convergence_score": 0.92,
+      "thinking_capacity": 0.782
+    },
+    "interpretation": {
+      "status": "TTG_CERTIFIED",
+      "feedback": "Hành vi cho thấy sự thấu đáo và khách quan cao."
+    }
+  }
+}
