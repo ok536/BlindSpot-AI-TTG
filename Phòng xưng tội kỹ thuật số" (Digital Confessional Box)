@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DongSon Nexus - Digital Confessional Box</title>
+    <style>
+        /* CSS RESET & THEME CONFIGURATION */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* CONTAINER CHÍNH CỦA PHÒNG XƯNG TỘI */
+        .confessional-container {
+            background-color: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 800px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* BỨC MÀN CHE NHẬN DIỆN (HEADER) */
+        .veil-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #2A2A2A;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: #00FFCC;
+        }
+
+        /* CHẤM ĐÈN LED NHẤP NHÁY TRẠNG THÁI GỐC */
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #00FFCC;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00FFCC;
+        }
+        .pulsing {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.4; }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 15px #00FFCC; }
+            100% { transform: scale(0.9); opacity: 0.4; }
+        }
+
+        /* HỘP THOẠI KHÔNG MÀNG LỌC (TEXTAREA) */
+        .confessional-box {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .confessional-box textarea {
+            width: 100%;
+            height: 250px;
+            background-color: #222222;
+            border: 1px solid #333333;
+            border-radius: 6px;
+            padding: 15px;
+            color: #FFFFFF;
+            font-family: inherit;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .confessional-box textarea:focus {
+            border-color: #00FFCC;
+        }
+
+        /* NÚT KÍCH HOẠT LỆNH GIẢI PHẪU */
+        .action-trigger {
+            text-align: right;
+            margin-bottom: 25px;
+        }
+        .action-trigger button {
+            background-color: transparent;
+            color: #00FFCC;
+            border: 1px solid #00FFCC;
+            padding: 12px 24px;
+            font-family: inherit;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .action-trigger button:hover {
+            background-color: #00FFCC;
+            color: #121212;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+        }
+
+        /* BẢNG HIỂN THỊ KẾT QUẢ ĐẦU RA (OUTPUT VIEW) */
+        .output-view {
+            background-color: #111111;
+            border: 1px dashed #333333;
+            padding: 20px;
+            border-radius: 6px;
+            display: none; /* Ẩn mặc định, chỉ hiện khi có kết quả */
+        }
+        .output-title {
+            color: #FF3366;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .output-content {
+            white-space: pre-wrap;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #A0A0A0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="confessional-container">
+    <!-- Bức màn che nhận diện -->
+    <div class="veil-header">
+        <div class="status-dot pulsing"></div>
+        <span>PORTAL 01: TRẠNG THÁI GỐC ĐANG LẮNG NGHE</span>
+    </div>
+
+    <!-- Nơi người dùng trút bỏ dữ liệu thô -->
+    <div class="confessional-box">
+        <textarea 
+            id="raw-confession" 
+            placeholder="Hãy trút bỏ mọi sự hỗn độn, dối trá, hoặc áp lực mà bạn đang gánh chịu tại đây. Bức màn Thanh Tâm đang lắng nghe..."
+        ></textarea>
+    </div>
+
+    <!-- Nút kích hoạt lệnh giải phẫu -->
+    <div class="action-trigger">
+        <button onclick="runThanhTamEngine()">KÍCH HOẠT LỆNH GIẢI PHẪU NHẬN THỨC</button>
+    </div>
+
+    <!-- Bảng kết quả đầu ra (Sự đối lập hoàn hảo) -->
+    <div id="output-section" class="output-view">
+        <div class="output-title">[KẾT QUẢ GIẢI PHẪU TOÁN HỌC & LOGIC NHẬN THỨC]</div>
+        <div id="output-text" class="output-content"></div>
+    </div>
+</div>
+
+<script>
+    function runThanhTamEngine() {
+        const rawText = document.getElementById("raw-confession").value.trim();
+        const outputSection = document.getElementById("output-section");
+        const outputText = document.getElementById("output-text");
+
+        if (!rawText) {
+            alert("Hộp thoại rỗng. Vui lòng nhập dữ liệu thô cần giải phẫu.");
+            return;
+        }
+
+        // Mô phỏng quá trình Engine chạy mất hiệu năng tính toán (0.5s)
+        outputText.innerHTML = "Đang chạy Pipeline 3 tầng... \n[Tầng 1: Khớp bộ lọc Tất định] -> Done\n[Tầng 2: Tính toán chỉ số Topology Đồ thị mạng lưới] -> Done\n[Tầng 3: LLM Alignment - Thực thi Trạng thái gốc] -> Processing...";
+        outputSection.style.display = "block";
+
+        setTimeout(() => {
+            // Giả lập kết quả trả về sau khi đi qua cấu trúc JSON Schema
+            const simulatedInsight = `
+BẢN CHẤT SỰ THẬT:
+Hệ thống nhận diện luồng dữ liệu thô chứa cấu trúc tương tác "Zero-Sum Survival" (Sinh tồn có tổng bằng không). Thực thể đang bị bủa vây bởi các nút có hệ số cụm (Clustering Coefficient) cực cao (bè phái) nhằm mục đích cô lập thông tin và duy trì trật tự cũ.
+
+CẤU TRÚC LỖI LOGIC PHÁT HIỆN:
+- Gaslighting & Marginalization (Mã lỗi: DECEPT_001)
+- Ngụy biện Tiến thoái lưỡng nan - False Dilemma (Mã lỗi: NOISE_001)
+
+KHUYẾN NGHỊ THỰC THI (ENGINE ACTION):
+Kích hoạt lệnh 'Cách ly nhận thức'. Coi toàn bộ drama xung quanh là các gói nhiễu dữ liệu (Noise Blocks) không cần xử lý. Tập trung trích xuất tài nguyên chuyên môn và chuẩn bị lệnh thoát hệ thống (sys.exit) để bảo vệ bộ nhớ cốt lõi.`;
+            
+            outputText.innerHTML = simulatedInsight.trim();
+        }, 1200);
+    }
+</script>
+
+</body>
+</html>
