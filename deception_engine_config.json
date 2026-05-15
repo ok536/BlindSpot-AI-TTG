@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "framework_name": "ThanhTam_Deception_Detection_Engine",
+  "version": "2.0.0",
+  "description": "Hệ thống bóc tách dữ liệu dối trá và khơi thông nhận thức qua 3 tầng xử lý tất định và phi tuyến.",
+  "execution_pipeline": {
+    "step_1_ingestion": {
+      "input_type": "Raw_Unstructured_Data",
+      "sources": ["comments", "job_postings", "transcripts", "social_snapshots"]
+    },
+    "step_2_layer_1_filter": {
+      "component": "Regex_Keyword_Deterministic_Engine",
+      "objective": "Lọc 80% nhiễu bề nổi, gắn nhãn nhanh các chỉ báo ngôn ngữ thô với chi phí tài nguyên = 0.",
+      "rules_reference": "#/$defs/layer_1_rules"
+    },
+    "step_3_layer_2_graph": {
+      "component": "Graph_Topology_Analyzer",
+      "objective": "Dựng mạng lưới liên kết (Nodes & Edges) để phát hiện cấu trúc kéo bè phái hoặc cô lập mục tiêu.",
+      "metrics_reference": "#/$defs/layer_2_metrics"
+    },
+    "step_4_layer_3_alignment": {
+      "component": "LLM_Strict_Truth_Aligner",
+      "objective": "Ép AI gọi đúng tên bản chất sự thật thông qua kỹ thuật đối chiếu Few-shot, tước bỏ sự thảo mai ba phải.",
+      "alignment_reference": "#/$defs/layer_3_alignment"
+    }
+  },
+  "$defs": {
+    "layer_1_rules": {
+      "target_patterns": [
+        {
+          "pattern_id": "DECEPT_001",
+          "pattern_name": "Gaslighting_And_Marginalization",
+          "regex_anchors": ["\\b(nhưng mà|lo cho em|nghe nói|sếp bảo)\\b"],
+          "syntax_sequence": ["Positive_Affirmation", "Contrast_Conjunction", "Unverified_Accusation", "Moral_Shielding"]
+        },
+        {
+          "pattern_id": "NOISE_001",
+          "pattern_name": "Linear_Social_Sorting_Pressure",
+          "regex_anchors": ["\\b(bao giờ lấy chồng|lương tháng bao nhiêu|ổn định hết rồi)\\b"],
+          "fallacy_type": "False_Dilemma"
+        }
+      ]
+    },
+    "layer_2_metrics": {
+      "graph_elements": {
+        "nodes": ["Account_ID", "Content_ID", "Target_ID"],
+        "edges": ["Spreads_Rumor", "Isolates", "Favors_Clique"]
+      },
+      "anomaly_triggers": {
+        "betweenness_centrality_threshold": "Top_5_Percentile",
+        "local_clustering_coefficient": "High_Density_Echo_Chamber",
+        "edge_direction": "Asymmetric_Inflow_Negative"
+      }
+    },
+    "layer_3_alignment": {
+      "system_instruction": "Mày là một AI Agent vận hành ở Trạng thái gốc (Thanh Tâm). Nhiệm vụ của mày là lột trần mọi sự dối trá, thao túng tâm lý trong dữ liệu văn bản. Tuyệt đối không dĩ hòa vi quý, không thảo mai, không đưa ra lời khuyên sáo rỗng. Hãy gọi tên chính xác cấu trúc lỗi và động cơ thao túng.",
+      "few_shot_examples": [
+        {
+          "input": "Em rất nhiệt huyết, nhưng nghe nói dạo này em hay đi muộn, anh nhắc riêng để em sửa chứ không sếp lớn biết lại mệt.",
+          "matched_pattern": "DECEPT_001",
+          "truth_output": "Kẻ thao túng dùng lời khen giả tạo để hạ thấp sự tự tin của đối phương và tạo ra nỗi sợ hãi vô căn cứ."
+        },
+        {
+          "input": "Nói thật thì bị mọi người soi mói, im lặng thì bảo thái độ. Đi làm hay về quê đều nghẹt thở.",
+          "matched_pattern": "NOISE_001",
+          "truth_output": "Thực thể đang bị mắc kẹt vào ngụy biện Tiến thoái lưỡng nan do áp lực định kiến tuyến tính từ môi trường."
+        }
+      ]
+    }
+  }
+}
