@@ -1,0 +1,66 @@
+{
+  "registry_version": "1.1.0",
+  "total_core_codes": 10,
+  "rules": {
+    "DECEPT_001": {
+      "title": "Gaslighting (Thao túng thực tế)",
+      "description": "Phủ nhận thực tế khách quan, khiến đối phương nghi ngờ trí nhớ hoặc năng lực nhận thức của chính mình.",
+      "severity": "CRITICAL",
+      "regex": "(?i)(bạn nhạy cảm quá|tự suy diễn|nhầm lẫn à|do bạn nghĩ thế|đã nói thế bao giờ|không nhớ gì à|ảo tưởng à)"
+    },
+    "DECEPT_003": {
+      "title": "Incompetence Shifting (Đổ lỗi năng lực)",
+      "description": "Kẻ có nghĩa vụ huấn luyện/hướng dẫn cố tình làm hời hợt rồi gán nhãn đối phương là chậm hiểu, 'lag' để che giấu sự bất tài của mình.",
+      "severity": "HIGH",
+      "regex": "(?i)(có thế cũng không hiểu|chậm hiểu thế|bị lag à|ngáo à|chỉ một lần thôi nhé|tự đi mà mò)"
+    },
+    "DECEPT_004": {
+      "title": "Intermittent Reinforcement (Vừa đấm vừa xoa)",
+      "description": "Thao túng bằng cách luân phiên giữa tấn công, hạ bệ và ban phát ơn huệ giả tạo để làm con mồi mất phương hướng.",
+      "severity": "CRITICAL",
+      "regex": "(?i)(mắng vì muốn tốt cho|không vì thương thì đã|tuy hơi tệ nhưng|sau này sẽ hiểu|đạp xuống.*kéo lên)"
+    },
+    "DECEPT_007": {
+      "title": "Martyr Complex (Đóng vai nạn nhân)",
+      "description": "Tự đóng vai người bị hại, chịu bất công để tống tiền cảm xúc, ép đối phương phải nhận lỗi về mình.",
+      "severity": "MEDIUM",
+      "regex": "(?i)(tôi làm tất cả vì|ai nghĩ cho tôi|tùy muốn nghĩ sao thì nghĩ|coi như tôi sai được chưa|gánh hết việc)"
+    },
+    "NOISE_001": {
+      "title": "Ad Hominem (Tấn công cá nhân)",
+      "description": "Thay vì tranh luận vào logic công việc, quay sang tấn công vào tính cách, độ tuổi, thâm niên hoặc tiểu sử của người nói.",
+      "severity": "HIGH",
+      "regex": "(?i)(vừa dốt vừa|biết cái gì mà|chưa có kinh nghiệm|thái độ thế à|xem lại bản thân đi|trẻ con biết gì)"
+    },
+    "NOISE_002": {
+      "title": "False Dilemma (Bẫy nhị phân / Tiến thoái lưỡng nan)",
+      "description": "Ép đối phương vào thế chỉ được chọn một trong hai lựa chọn cực đoan, che giấu các giải pháp thứ ba tối ưu hơn.",
+      "severity": "MEDIUM",
+      "regex": "(?i)(không làm thì nghỉ|chọn đi: một là|hoặc là nghe theo hoặc là|bên tôi hoặc bên nó)"
+    },
+    "NOISE_003": {
+      "title": "Schrödinger's Joke (Đùa độc hại dò xét)",
+      "description": "Đưa ra lời xúc phạm hoặc hạ bệ ngầm, nếu bị phản ứng thì lập tức lật kèo lươn lẹo bảo 'chỉ đùa thôi'.",
+      "severity": "HIGH",
+      "regex": "(?i)(nói đùa thôi mà|vui thôi làm gì căng|nhạy cảm thế|không biết đùa à|đùa tí cho vui)"
+    },
+    "NOISE_005": {
+      "title": "Straw Man (Ngụy biện bù nhìn)",
+      "description": "Bóp méo, phóng đại luận điểm của đối phương thành một dạng cực đoan rồi tấn công vào luận điểm bóp méo đó.",
+      "severity": "HIGH",
+      "regex": "(?i)(ý bạn là công ty bóc lột à|muốn làm loạn đúng không|định trèo lên đầu sếp à|cho là mình đúng nhất à)"
+    },
+    "BIAS_003": {
+      "title": "Dunning-Kruger (Ảo tưởng quyền lực / Ngáo vĩ cuồng)",
+      "description": "Năng lực yếu kém nhưng ảo tưởng mình là người giỏi nhất, liên tục ra vẻ dạy đời và phủ nhận đóng góp của người khác.",
+      "severity": "MEDIUM",
+      "regex": "(?i)(ở đây tôi là|biết tôi là ai không|nghe theo tôi là được|chưa đủ tầm|trình độ đâu mà nói)"
+    },
+    "FACTION_002": {
+      "title": "Edge Inversion (Đảo chiều lòng trung thành)",
+      "description": "Hành vi lật kèo, quay xe, đâm sau lưng, đem thông tin mật đi tâu bẩm để bợ đỡ phe mạnh nhằm trục lợi cá nhân.",
+      "severity": "CRITICAL",
+      "regex": "(?i)(chị chị em em|tin tưởng nhau|nói xấu sếp.*báo cáo|tâu bẩm|mách lẻo|quay xe|lật kèo)"
+    }
+  }
+}
