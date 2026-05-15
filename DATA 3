@@ -1,0 +1,43 @@
+{
+  "pattern_id": "DECEPT_001",
+  "pattern_name": "Gaslighting_And_Marginalization",
+  "linguistic_indicators": {
+    "tactics": ["Hạ thấp năng lực", "Gắn mác định kiến", "Phán xét nhị phân"],
+    "fallacies": ["Ad Hominem (Công kích cá nhân)", "Poisoning the Well (Đầu độc giếng nước)"]
+  },
+  "graph_topology_prediction": {
+    "target_node_status": "Isolated (Bị cô lập, Out-degree nhận tín hiệu tiêu cực)",
+    "attacker_node_status": "High Degree Centrality (Cụm nhân sự cũ gào to để át tiếng phản biện)"
+  }
+}{
+  "pattern_id": "DECEPT_002",
+  "pattern_name": "Asymmetric_Information_And_Clique_Favoritism",
+  "linguistic_indicators": {
+    "tactics": ["Dịch chuyển sự thật", "Bao che lươn lẹo", "Đạo đức giả (Chị em/Trở mặt)"],
+    "fallacies": ["Cherry Picking (Chỉ chọn dữ liệu có lợi)", "Straw Man (Bóp méo lời nói đối phương)"]
+  },
+  "graph_topology_prediction": {
+    "structure_type": "Stochastic Block Model (Các cụm đóng kín - Echo Chambers)",
+    "interaction": "Liên tục tương tác nội bộ cụm (High In-cluster Density), chặn đứng dòng chảy thông tin ra ngoài."
+  }
+}{
+  "pattern_id": "DECEPT_003",
+  "pattern_name": "Retaliatory_Amplification_And_Sycophancy",
+  "linguistic_indicators": {
+    "tactics": ["Leak thông tin nhỏ giọt (Hint)", "Nói xấu sau lưng", "Tâu bẩm trục lợi"],
+    "fallacies": ["Slanted Language (Dùng từ ngữ định kiến nặng)", "Hearsay (Tin đồn vô căn cứ)"]
+  },
+  "temporal_signature": {
+    "velocity": "High (Tốc độ phát tán đột biến sau một sự kiện kích hoạt như: bị đuổi việc/Tết đến)"
+  },
+  "graph_topology_prediction": {
+    "node_role": "High Betweenness Centrality (Kẻ đóng vai trung chuyển tin đồn giữa các nhóm tài khoản)"
+  }
+}{
+  "pattern_id": "NOISE_001",
+  "pattern_name": "Linear_Social_Sorting_Pressure",
+  "linguistic_indicators": {
+    "tactics": ["So sánh ngang hàng", "Ép khuôn mẫu ổn định", "Bắt bẻ thái độ"],
+    "fallacies": ["False Dilemma (Tiến thoái lưỡng nan - Nói thật bị soi, im lặng bị mắng)"]
+  }
+}
