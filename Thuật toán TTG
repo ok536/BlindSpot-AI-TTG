@@ -1,0 +1,14 @@
+"processing_logic": {
+  "step_1_coverage": {
+    "visited_units": 850, "total_area_units": 1000 
+    // ➔ Blind_Spot = 0.15 (Điểm mù chỉ có 15%)
+  },
+  "step_2_depth": {
+    "convergence_score": 0.92 
+    // ➔ Độ hội tụ tâm trí đạt 92% (Cực kỳ tĩnh tại)
+  }
+},
+"output_metrics": {
+  "thinking_capacity": 0.782 
+  // ➔ Kết quả tất định: (1 - 0.15) * 0.92 = 0.782
+}
